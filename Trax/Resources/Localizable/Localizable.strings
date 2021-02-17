@@ -1,0 +1,9 @@
+/* 
+  Localizable.strings
+  Trax
+
+  Created by Adar Tzeiri on 16/02/2021.
+  
+*/
+"continue" = "המשך";
+"cancel"   = "ביטול";
