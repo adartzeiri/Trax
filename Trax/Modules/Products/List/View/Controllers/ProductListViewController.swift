@@ -34,14 +34,25 @@ class ProductListViewController: UIViewController, Storyboarded, Loadable, Alert
         
         setupViews()
         bindViewModel()
-        productListViewModel?.fetchProducts()
+        productListViewModel?.fetch()
         bindToAlerts()
     }
     
     // MARK: - Actions
     @IBAction func didTapNavBarItem(_ sender: UIBarButtonItem) {
-        tableView.setEditing(true, animated: true)
+        //tableView.setEditing(true, animated: true)
         //TODO send tag to ViewModel
+        productListViewModel?.create(product: DomainProduct(identfier: Date().timeIntervalSince1970.description, name: randomString(length: 4), barcode: "1234", category: .general, image: Data()))
+        productListViewModel?.create(product: DomainProduct(identfier: Date().timeIntervalSince1970.description, name: randomString(length: 4), barcode: "1234", category: .juice, image: Data()))
+        productListViewModel?.create(product: DomainProduct(identfier: Date().timeIntervalSince1970.description, name: randomString(length: 4), barcode: "1234", category: .sparkling, image: Data()))
+        productListViewModel?.create(product: DomainProduct(identfier: Date().timeIntervalSince1970.description, name: randomString(length: 4), barcode: "1234", category: .tea, image: Data()))
+        productListViewModel?.create(product: DomainProduct(identfier: Date().timeIntervalSince1970.description, name: randomString(length: 4), barcode: "1234", category: .sports, image: Data()))
+        productListViewModel?.create(product: DomainProduct(identfier: Date().timeIntervalSince1970.description, name: randomString(length: 4), barcode: "1234", category: .energy, image: Data()))
+    }
+    
+    func randomString(length: Int) -> String {
+      let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+      return String((0..<length).map{ _ in letters.randomElement()! })
     }
 }
 
@@ -84,7 +95,7 @@ private extension ProductListViewController {
                 self.allowRefresh = true
             }
             allowRefresh = false
-            productListViewModel?.fetchProducts()
+            productListViewModel?.fetch()
         }else{
             finishRefresh()
         }
@@ -98,7 +109,8 @@ private extension ProductListViewController {
 
 extension ProductListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        coordinator?.navgiateToProductDetailsWith(productListViewModel?.dataSource.data.value[indexPath.row])
+        guard let domainProduct = productListViewModel?.dataSource.data.value[indexPath.section][indexPath.row] else { return }
+        coordinator?.navgiateToProductDetailsWith(ProductViewModel(domainProduct: domainProduct))
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

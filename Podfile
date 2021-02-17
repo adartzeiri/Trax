@@ -6,7 +6,7 @@ target 'Trax' do
   use_frameworks!
 
   # Pods for Trax
-
+  pod 'RealmSwift'
   target 'TraxTests' do
     inherit! :search_paths
     # Pods for testing

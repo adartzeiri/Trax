@@ -30,17 +30,12 @@
                             </imageView>
                         </subviews>
                     </stackView>
-                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="dpm-La-C5u">
-                        <rect key="frame" x="150" y="88" width="20" height="20"/>
-                    </activityIndicatorView>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="lUD-tJ-U5W" secondAttribute="bottom" constant="10" id="4qy-UE-gqw"/>
-                    <constraint firstItem="dpm-La-C5u" firstAttribute="centerX" secondItem="ISB-VE-lR4" secondAttribute="centerX" id="6aH-od-cf8"/>
                     <constraint firstAttribute="trailing" secondItem="lUD-tJ-U5W" secondAttribute="trailing" constant="10" id="Ahg-5G-RvJ"/>
                     <constraint firstItem="lUD-tJ-U5W" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="Lkk-3Z-LLf"/>
                     <constraint firstItem="lUD-tJ-U5W" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="qka-8l-Pui"/>
-                    <constraint firstItem="dpm-La-C5u" firstAttribute="centerY" secondItem="ISB-VE-lR4" secondAttribute="centerY" id="zfD-Yb-dhe"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

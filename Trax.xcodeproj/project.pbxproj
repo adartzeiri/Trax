@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -42,6 +42,10 @@
 		BA281C1E25DC0C86004382BD /* ProductListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA281C1D25DC0C86004382BD /* ProductListCoordinator.swift */; };
 		BA281C2625DC0EEE004382BD /* ProductList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA281C2525DC0EEE004382BD /* ProductList.storyboard */; };
 		BA281C3425DC4381004382BD /* ProductCaterogry.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA281C3325DC4381004382BD /* ProductCaterogry.swift */; };
+		BA72321625DD28F100F0BE1D /* DomainProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA72321525DD28F100F0BE1D /* DomainProduct.swift */; };
+		BA72321C25DD29BA00F0BE1D /* ProductsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA72321B25DD29BA00F0BE1D /* ProductsRepository.swift */; };
+		BA72322725DD2C9900F0BE1D /* LocalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA72322625DD2C9900F0BE1D /* LocalRepository.swift */; };
+		BA72322C25DD2CB000F0BE1D /* WebServiceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA72322B25DD2CB000F0BE1D /* WebServiceRepository.swift */; };
 		C7F1D21F285D7E4E6FFEFEBC /* Pods_Trax.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C51B0ED03A066D06AC49B0D /* Pods_Trax.framework */; };
 /* End PBXBuildFile section */
 
@@ -109,6 +113,10 @@
 		BA281C1D25DC0C86004382BD /* ProductListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListCoordinator.swift; sourceTree = "<group>"; };
 		BA281C2525DC0EEE004382BD /* ProductList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProductList.storyboard; sourceTree = "<group>"; };
 		BA281C3325DC4381004382BD /* ProductCaterogry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCaterogry.swift; sourceTree = "<group>"; };
+		BA72321525DD28F100F0BE1D /* DomainProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainProduct.swift; sourceTree = "<group>"; };
+		BA72321B25DD29BA00F0BE1D /* ProductsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsRepository.swift; sourceTree = "<group>"; };
+		BA72322625DD2C9900F0BE1D /* LocalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalRepository.swift; sourceTree = "<group>"; };
+		BA72322B25DD2CB000F0BE1D /* WebServiceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebServiceRepository.swift; sourceTree = "<group>"; };
 		BBC5F4AD78E91294DAC1214B /* Pods_Trax_TraxUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Trax_TraxUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCBBF9B01ECFBAA8E3CAF5D2 /* Pods_TraxTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TraxTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -151,7 +159,6 @@
 				55518993DCF73C11B569DB41 /* Pods-TraxTests.debug.xcconfig */,
 				23D501C823905CCEF8993FC7 /* Pods-TraxTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -390,6 +397,7 @@
 		BA281B7925DBC0AA004382BD /* List */ = {
 			isa = PBXGroup;
 			children = (
+				BA72321A25DD297F00F0BE1D /* Repository */,
 				BA281C0D25DC03B9004382BD /* DataSource */,
 				BA281B7F25DBC0E3004382BD /* Coordinator */,
 				BA281B7E25DBC0DE004382BD /* View */,
@@ -404,7 +412,6 @@
 			children = (
 				BA281B8025DBC0EE004382BD /* Coordinator */,
 				BA281B8325DBC0FF004382BD /* View */,
-				BA281B8125DBC0F4004382BD /* Model */,
 				BA281B8225DBC0FA004382BD /* ViewModel */,
 			);
 			path = Product;
@@ -414,7 +421,6 @@
 			isa = PBXGroup;
 			children = (
 				BA281C1325DC0408004382BD /* ProductListViewModel.swift */,
-				BA281C1825DC0425004382BD /* ProductViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -423,6 +429,7 @@
 			isa = PBXGroup;
 			children = (
 				BA281C3325DC4381004382BD /* ProductCaterogry.swift */,
+				BA72321525DD28F100F0BE1D /* DomainProduct.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -451,16 +458,10 @@
 			path = Coordinator;
 			sourceTree = "<group>";
 		};
-		BA281B8125DBC0F4004382BD /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		BA281B8225DBC0FA004382BD /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				BA281C1825DC0425004382BD /* ProductViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -540,6 +541,16 @@
 			path = DataSource;
 			sourceTree = "<group>";
 		};
+		BA72321A25DD297F00F0BE1D /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				BA72321B25DD29BA00F0BE1D /* ProductsRepository.swift */,
+				BA72322625DD2C9900F0BE1D /* LocalRepository.swift */,
+				BA72322B25DD2CB000F0BE1D /* WebServiceRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -551,6 +562,7 @@
 				BA281ACE25DBB80F004382BD /* Sources */,
 				BA281ACF25DBB80F004382BD /* Frameworks */,
 				BA281AD025DBB80F004382BD /* Resources */,
+				FE2E8283742810CAB950D0FB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -588,6 +600,7 @@
 				BA281AF225DBB810004382BD /* Sources */,
 				BA281AF325DBB810004382BD /* Frameworks */,
 				BA281AF425DBB810004382BD /* Resources */,
+				7A8A4144997971C6785D43E6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -694,6 +707,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		7A8A4144997971C6785D43E6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Trax-TraxUITests/Pods-Trax-TraxUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Trax-TraxUITests/Pods-Trax-TraxUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Trax-TraxUITests/Pods-Trax-TraxUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		AA950D1FD45255B0A8EF61ED /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -738,6 +768,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		FE2E8283742810CAB950D0FB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Trax/Pods-Trax-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Trax/Pods-Trax-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Trax/Pods-Trax-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -748,6 +795,7 @@
 				BA281B1625DBBB90004382BD /* GenericDataSource.swift in Sources */,
 				BA281C0F25DC03DF004382BD /* ProductListTableDataSource.swift in Sources */,
 				BA281C0825DC01F4004382BD /* ProductTableViewCell.swift in Sources */,
+				BA72321625DD28F100F0BE1D /* DomainProduct.swift in Sources */,
 				BA281B4B25DBBD18004382BD /* ApplicationCoordinator.swift in Sources */,
 				BA281B5125DBBD37004382BD /* CellIdentifiable.swift in Sources */,
 				BA281B9B25DBC26F004382BD /* GenericPickerDataSource.swift in Sources */,
@@ -762,12 +810,15 @@
 				BA281C1925DC0425004382BD /* ProductViewModel.swift in Sources */,
 				BA281C1425DC0408004382BD /* ProductListViewModel.swift in Sources */,
 				BA281B4125DBBCBC004382BD /* AlertPresentableViewController.swift in Sources */,
+				BA72321C25DD29BA00F0BE1D /* ProductsRepository.swift in Sources */,
 				BA281B9325DBC24F004382BD /* GenericPickerManager.swift in Sources */,
 				BA281B3725DBBC88004382BD /* AlertModel.swift in Sources */,
 				BA281BA925DBC400004382BD /* Defines.swift in Sources */,
 				BA281AD825DBB80F004382BD /* SceneDelegate.swift in Sources */,
+				BA72322725DD2C9900F0BE1D /* LocalRepository.swift in Sources */,
 				BA281B5925DBBD5E004382BD /* Loadable.swift in Sources */,
 				BA281C0225DC012A004382BD /* ProductViewController.swift in Sources */,
+				BA72322C25DD2CB000F0BE1D /* WebServiceRepository.swift in Sources */,
 				BA281C1E25DC0C86004382BD /* ProductListCoordinator.swift in Sources */,
 				BA281B5E25DBBD78004382BD /* Storyboarded.swift in Sources */,
 			);

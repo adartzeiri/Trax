@@ -9,28 +9,26 @@ import Foundation
 
 protocol ProductViewModelable: AlertPresentableViewModel {
     associatedtype GenericPickerDataModel = ProductCategory
+    
     var alertModel:  Observable<AlertModel?>       { get set }
     var isLoading:   Observable<Bool>              { get set }
-    var categories:  [GenericRow<GenericPickerDataModel>] { get set }
-    var name:        String?                       { get set }
-    var barcode:     String?                       { get set }
-    var imageBase64: String?                       { get set }
-    var category:    String?                       { get set }
+    var productDomainModel: DomainProduct?         { get set }
     
     func setupPickerView(presenter: GenericPickerPresentorable)
 }
 
 class ProductViewModel: ProductViewModelable {
     typealias GenericPickerDataModel = ProductCategory
-    var name:        String?
-    var barcode:     String?
-    var imageBase64: String?
-    var category:    String?
     
-    var pickerViewManager: GenericPickerManager<GenericPickerDataModel>?
     var alertModel:  Observable<AlertModel?> = Observable(nil)
     var isLoading:   Observable<Bool>        = Observable(false)
-    var categories:  [GenericRow<GenericPickerDataModel>] = [GenericRow<GenericPickerDataModel>]()
+    var productDomainModel: DomainProduct?
+    
+    private var pickerViewManager: GenericPickerManager<GenericPickerDataModel>?
+    
+    init(domainProduct: DomainProduct) {
+        productDomainModel = domainProduct
+    }
     
     func setupPickerView(presenter: GenericPickerPresentorable) {
         pickerViewManager = GenericPickerManager(with: generateCategories(), presentor: presenter, delegate: self)
@@ -43,7 +41,7 @@ class ProductViewModel: ProductViewModelable {
 
 extension ProductViewModel: GenericPickerManagerDelegate {
     func genericPickerManagerDidSelect(item: Any) {
-        //guard let item = item as? GenericRow<GenericPickerDataModel> else { return }
-        //selectedCategory.value = item.type
+        guard let item = item as? GenericRow<GenericPickerDataModel> else { return }
+        productDomainModel?.category = item.type
     }
 }

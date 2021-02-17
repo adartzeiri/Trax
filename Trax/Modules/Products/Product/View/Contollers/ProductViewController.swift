@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ProductViewController: UIViewController, Storyboarded, Loadable, AlertPresentableView {
+class ProductViewController: UIViewController, Storyboarded, Loadable, AlertPresentableView, GenericPickerPresentorable {
     
     // MARK: - Coordinator
     weak var coordinator: ProductListCoordinator?
@@ -27,12 +27,12 @@ class ProductViewController: UIViewController, Storyboarded, Loadable, AlertPres
         setupViews()
         bindViewModel()
         bindToAlerts()
+        
+        productViewModel?.setupPickerView(presenter: self)
     }
     
     // MARK: - Actions
-    @IBAction func didTapNavBarItem(_ sender: UIBarButtonItem) {
-        //TODO send tag to ViewModel or Coordinator
-    }
+    
 }
 
 // MARK: - Private functions

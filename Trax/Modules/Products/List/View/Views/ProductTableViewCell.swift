@@ -11,10 +11,13 @@ class ProductTableViewCell: UITableViewCell {
     @IBOutlet weak var productName: UILabel!
     @IBOutlet weak var productImage: UIImageView!
     
-    var productViewModel: ProductViewModel!
+    var domainProduct: DomainProduct!
     {
         didSet {
-            //TODO
+            productName.text = domainProduct.name
+            let imageData = domainProduct.image
+            guard let image = UIImage(data: imageData) else { return }
+            productImage.image = image
         }
     }
     
