@@ -23,11 +23,6 @@ class ProductTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        productImage.layer.cornerRadius = productImage.frame.size.height/2
-        productImage.clipsToBounds = true
-        productImage.layer.borderWidth = 1
-        productImage.layer.borderColor = UIColor.lightGray.cgColor
     }
 }
 

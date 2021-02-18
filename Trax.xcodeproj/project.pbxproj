@@ -46,6 +46,8 @@
 		BA72321C25DD29BA00F0BE1D /* ProductsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA72321B25DD29BA00F0BE1D /* ProductsRepository.swift */; };
 		BA72322725DD2C9900F0BE1D /* LocalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA72322625DD2C9900F0BE1D /* LocalRepository.swift */; };
 		BA72322C25DD2CB000F0BE1D /* WebServiceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA72322B25DD2CB000F0BE1D /* WebServiceRepository.swift */; };
+		BA96070925DE9525005C67AC /* ImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA96070825DE9525005C67AC /* ImagePickerController.swift */; };
+		BA96071225DE9C05005C67AC /* BarcodeScannerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA96071125DE9C05005C67AC /* BarcodeScannerController.swift */; };
 		C7F1D21F285D7E4E6FFEFEBC /* Pods_Trax.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C51B0ED03A066D06AC49B0D /* Pods_Trax.framework */; };
 /* End PBXBuildFile section */
 
@@ -117,6 +119,8 @@
 		BA72321B25DD29BA00F0BE1D /* ProductsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsRepository.swift; sourceTree = "<group>"; };
 		BA72322625DD2C9900F0BE1D /* LocalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalRepository.swift; sourceTree = "<group>"; };
 		BA72322B25DD2CB000F0BE1D /* WebServiceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebServiceRepository.swift; sourceTree = "<group>"; };
+		BA96070825DE9525005C67AC /* ImagePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerController.swift; sourceTree = "<group>"; };
+		BA96071125DE9C05005C67AC /* BarcodeScannerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeScannerController.swift; sourceTree = "<group>"; };
 		BBC5F4AD78E91294DAC1214B /* Pods_Trax_TraxUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Trax_TraxUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCBBF9B01ECFBAA8E3CAF5D2 /* Pods_TraxTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TraxTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -325,6 +329,8 @@
 		BA281B2C25DBBC26004382BD /* UIReusable */ = {
 			isa = PBXGroup;
 			children = (
+				BA96071025DE9BEE005C67AC /* BarcodeScanner */,
+				BA96070725DE9515005C67AC /* ImagePicker */,
 				BA281B9125DBC239004382BD /* GenericPicker */,
 				BA281B3325DBBC5F004382BD /* AlertDialog */,
 				BA281B2D25DBBC2F004382BD /* Storyboard */,
@@ -549,6 +555,22 @@
 				BA72322B25DD2CB000F0BE1D /* WebServiceRepository.swift */,
 			);
 			path = Repository;
+			sourceTree = "<group>";
+		};
+		BA96070725DE9515005C67AC /* ImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				BA96070825DE9525005C67AC /* ImagePickerController.swift */,
+			);
+			path = ImagePicker;
+			sourceTree = "<group>";
+		};
+		BA96071025DE9BEE005C67AC /* BarcodeScanner */ = {
+			isa = PBXGroup;
+			children = (
+				BA96071125DE9C05005C67AC /* BarcodeScannerController.swift */,
+			);
+			path = BarcodeScanner;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -799,6 +821,7 @@
 				BA281B4B25DBBD18004382BD /* ApplicationCoordinator.swift in Sources */,
 				BA281B5125DBBD37004382BD /* CellIdentifiable.swift in Sources */,
 				BA281B9B25DBC26F004382BD /* GenericPickerDataSource.swift in Sources */,
+				BA96070925DE9525005C67AC /* ImagePickerController.swift in Sources */,
 				BA281B2F25DBBC3C004382BD /* StoryboardCustomXibView.swift in Sources */,
 				BA281B3C25DBBCA1004382BD /* AlertPresentableViewModel.swift in Sources */,
 				BA281B2425DBBBE0004382BD /* Observable.swift in Sources */,
@@ -821,6 +844,7 @@
 				BA72322C25DD2CB000F0BE1D /* WebServiceRepository.swift in Sources */,
 				BA281C1E25DC0C86004382BD /* ProductListCoordinator.swift in Sources */,
 				BA281B5E25DBBD78004382BD /* Storyboarded.swift in Sources */,
+				BA96071225DE9C05005C67AC /* BarcodeScannerController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -992,6 +1016,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JH23ASSZ6T;
 				INFOPLIST_FILE = "$(SRCROOT)/Trax/SupportingFiles/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -999,7 +1024,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = adar.Trax;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1012,6 +1037,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JH23ASSZ6T;
 				INFOPLIST_FILE = "$(SRCROOT)/Trax/SupportingFiles/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1019,7 +1045,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = adar.Trax;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

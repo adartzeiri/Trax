@@ -49,10 +49,11 @@ class LocalProductRepository: ProductRepository {
         }
     }
     
-    func delete(domainModels: [DomainModel]) {
+    func delete(domainModel: DomainModel) {
         do {
             try realm?.write({
-                realm?.delete(domainModels.map({RealmProduct(domainModel: $0)}))
+                guard let product = products?.first(where: {$0.identifier == domainModel.identfier}) else { return }
+                realm?.delete(product)
             })
         } catch {
             print(error)

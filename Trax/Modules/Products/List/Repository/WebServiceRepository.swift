@@ -15,5 +15,5 @@ class WebProductRepository:ProductRepository {
     
     func update(domain: DomainModel){}
     
-    func delete(domainModels: [DomainModel]){}
+    func delete(domainModel: DomainModel){}
 }

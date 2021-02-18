@@ -20,15 +20,36 @@ class ProductListCoordinator: Coordinator {
         let productListVC = ProductListViewController.instantiate()
         productListVC.productListViewModel = ProductListViewModel(repository: LocalProductRepository())
         productListVC.coordinator = self
-        navigationContoller.setNavigationBarHidden(true, animated: true)
         navigationContoller.pushViewController(productListVC, animated: true)
     }
     
-    func navgiateToProductDetailsWith(_ productViewModel: ProductViewModel? = nil) {
+    func navgiateToProductDetailsWith(_ domainProductModel: DomainProduct? = nil) {
         let productVC = ProductViewController.instantiate()
-        productVC.productViewModel = productViewModel
-        navigationContoller.setNavigationBarHidden(false, animated: true)
-        navigationContoller.pushViewController(productVC, animated: true)
+        productVC.productViewModel = ProductViewModel(domainProduct:domainProductModel)
+        productVC.coordinator = self
+        
+        productVC.action = (domainProductModel != nil) ? .edit : .create
+       
+        navigationContoller.pushViewController(productVC, animated: false)
+    }
+    
+    func didSubmitProductFor(action: ProductAction, domainProductModel: DomainProduct) {
+        navigationContoller.popViewController(animated: true)
+        guard let productListVC = navigationContoller.viewControllers.first as? ProductListViewController else { return }
+        
+        switch action {
+        case .create:
+            productListVC.productListViewModel?.create(product: domainProductModel)
+        case .edit:
+            productListVC.productListViewModel?.update(product: domainProductModel)
+        }
+    }
+}
+
+extension ProductListCoordinator {
+    enum ProductAction {
+        case create
+        case edit
     }
 }
 

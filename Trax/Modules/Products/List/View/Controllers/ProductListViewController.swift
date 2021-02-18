@@ -32,6 +32,7 @@ class ProductListViewController: UIViewController, Storyboarded, Loadable, Alert
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureTableView()
         setupViews()
         bindViewModel()
         productListViewModel?.fetch()
@@ -39,39 +40,32 @@ class ProductListViewController: UIViewController, Storyboarded, Loadable, Alert
     }
     
     // MARK: - Actions
-    @IBAction func didTapNavBarItem(_ sender: UIBarButtonItem) {
-        //tableView.setEditing(true, animated: true)
-        //TODO send tag to ViewModel
-        productListViewModel?.create(product: DomainProduct(identfier: Date().timeIntervalSince1970.description, name: randomString(length: 4), barcode: "1234", category: .general, image: Data()))
-        productListViewModel?.create(product: DomainProduct(identfier: Date().timeIntervalSince1970.description, name: randomString(length: 4), barcode: "1234", category: .juice, image: Data()))
-        productListViewModel?.create(product: DomainProduct(identfier: Date().timeIntervalSince1970.description, name: randomString(length: 4), barcode: "1234", category: .sparkling, image: Data()))
-        productListViewModel?.create(product: DomainProduct(identfier: Date().timeIntervalSince1970.description, name: randomString(length: 4), barcode: "1234", category: .tea, image: Data()))
-        productListViewModel?.create(product: DomainProduct(identfier: Date().timeIntervalSince1970.description, name: randomString(length: 4), barcode: "1234", category: .sports, image: Data()))
-        productListViewModel?.create(product: DomainProduct(identfier: Date().timeIntervalSince1970.description, name: randomString(length: 4), barcode: "1234", category: .energy, image: Data()))
+    @IBAction func didTapCreate(_ sender: UIBarButtonItem) {
+        coordinator?.navgiateToProductDetailsWith()
     }
     
-    func randomString(length: Int) -> String {
-      let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-      return String((0..<length).map{ _ in letters.randomElement()! })
+    @IBAction func didTapEdit(_ sender: UIBarButtonItem) {
+        tableView.isEditing = !tableView.isEditing
+        sender.title = self.tableView.isEditing ? "Done" : "Edit"
     }
 }
 
 // MARK: - Private functions
 private extension ProductListViewController {
+    func configureTableView() {
+        tableView.register(ProductTableViewCell.cellNib, forCellReuseIdentifier: ProductTableViewCell.cellID)
+        tableView.delegate   = self
+    }
     
     func setupViews() {
         navigationController?.navigationBar.barTintColor = .white
-        
-        tableView.register(ProductTableViewCell.cellNib, forCellReuseIdentifier: ProductTableViewCell.cellID)
-        tableView.delegate   = self
-        
         // Add Refresh Control to Table View
         if #available(iOS 10.0, *) {
             tableView.refreshControl = refreshControl
         } else {
             tableView.addSubview(refreshControl)
         }
-        // Configure Refresh Control
+        //Configure Refresh Control
         refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
         initializeLargeActivityIndicator()
     }
@@ -110,7 +104,7 @@ private extension ProductListViewController {
 extension ProductListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let domainProduct = productListViewModel?.dataSource.data.value[indexPath.section][indexPath.row] else { return }
-        coordinator?.navgiateToProductDetailsWith(ProductViewModel(domainProduct: domainProduct))
+        coordinator?.navgiateToProductDetailsWith(domainProduct)
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

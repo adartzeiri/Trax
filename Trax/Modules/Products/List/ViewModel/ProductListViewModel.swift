@@ -15,7 +15,7 @@ protocol ProductListViewModelable: AlertPresentableViewModel {
     
     func fetch()
     func create(product: DomainProduct)
-    func delete(products: [DomainProduct])
+    func delete(product: DomainProduct)
     func update(product: DomainProduct)
 }
 
@@ -28,6 +28,7 @@ class ProductListViewModel: ProductListViewModelable {
     convenience init(repository: ProductRepository) {
         self.init()
         self.repository = repository
+        dataSource.delegate = self
     }
     
     private func getProductsByCategories(products: [DomainProduct]) -> [[DomainProduct]] {
@@ -57,13 +58,19 @@ class ProductListViewModel: ProductListViewModelable {
         fetch()
     }
     
-    func delete(products: [DomainProduct]) {
-        repository?.delete(domainModels: products)
+    func delete(product: DomainProduct) {
+        repository?.delete(domainModel: product)
         fetch()
     }
     
     func update(product: DomainProduct) {
         repository?.update(domain: product)
         fetch()
+    }
+}
+
+extension ProductListViewModel: ProductListTableDataSourceDelegate {
+    func deleteItem(item: DomainProduct) {
+        delete(product: item)
     }
 }

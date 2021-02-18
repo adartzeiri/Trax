@@ -12,7 +12,7 @@ protocol ProductRepository {
     func getAll() -> [DomainModel]?
     func create( domain: DomainModel )
     func update( domain: DomainModel )
-    func delete( domainModels: [DomainModel] )
+    func delete( domainModel: DomainModel )
 }
 
 
